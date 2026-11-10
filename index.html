@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -93,10 +92,10 @@
   <section id="about" class="bg-[#D32F2F] text-white py-24 px-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div class="flex justify-center">
-        <!-- Original Photo Frame -->
         <div class="relative w-72 h-96 sm:w-80 sm:h-[440px] rounded-3xl overflow-hidden border-4 border-[#121212] shadow-2xl bg-white rotate-[-2deg] hover:rotate-0 transition duration-300">
           <img 
-            src="profile.jpg" 
+            src="profile.jpg.png" 
+            onerror="this.src='profile.jpg'"
             alt="Varnika Seth" 
             class="w-full h-full object-cover"
           />
@@ -139,19 +138,19 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-mockup.jpg" alt="Aura Mockup" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="aura-mockup.jpg.png" onerror="this.src='aura-mockup.jpg'" alt="Aura Mockup" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Brand Identity Mockup</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-diecut.jpg" alt="Aura Die Cut" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="aura-diecut.jpg.png" onerror="this.src='aura-diecut.jpg'" alt="Aura Die Cut" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Custom Bag Dieline</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-poster.jpg" alt="Aura Poster" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="aura-poster.jpg.png" onerror="this.src='aura-poster.jpg'" alt="Aura Poster" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Jewellery Campaign Poster</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-billboard.jpg" alt="Aura Billboard" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="aura-billboard.jpg.png" onerror="this.src='aura-billboard.jpg'" alt="Aura Billboard" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">OOH Billboard Display</div>
         </div>
       </div>
@@ -165,26 +164,26 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-logo.jpg" alt="Bakery Logo" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="bakery-logo.jpg.png" onerror="this.src='bakery-logo.jpg'" alt="Bakery Logo" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Logo Variations</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-branding.jpg" alt="Bakery Branding" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="bakery-branding.jpg.png" onerror="this.src='bakery-branding.jpg'" alt="Bakery Branding" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Brand Board & Assets</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-box.jpg" alt="Bakery Box" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="bakery-box.jpg.png" onerror="this.src='bakery-box.jpg'" alt="Bakery Box" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Pastry Box Dieline</div>
         </div>
         <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-card.jpg" alt="Bakery Card" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
+          <img src="bakery-card.jpg.png" onerror="this.src='bakery-card.jpg'" alt="Bakery Card" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
           <div class="p-3 text-xs font-bold text-gray-300">Stationery & QR Card</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 2: Advertising Designs (Clean 3-Column Layout) -->
+  <!-- Section 2: Advertising Designs -->
   <section id="advertising" class="py-24 px-6 bg-[#FAF6F0]">
     <div class="max-w-6xl mx-auto space-y-12">
       <div>
@@ -194,105 +193,17 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-xl transition duration-300">
-          <img src="ad-sprite.jpg" alt="Cold Drink Ad" class="w-full h-72 object-cover" />
+          <img src="ad-sprite.jpg.png" onerror="this.src='ad-sprite.jpg'" alt="Cold Drink Ad" class="w-full h-72 object-cover" />
           <div class="p-4">
             <h4 class="font-bold text-sm text-[#121212]">Sprite Refreshment Ad</h4>
             <p class="text-xs text-gray-500 mt-1">Product manipulation & splash layout</p>
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-xl transition duration-300">
-          <img src="ad-milk.jpg" alt="Milk Ad" class="w-full h-72 object-cover" />
+          <img src="ad-milk.jpg.png" onerror="this.src='ad-milk.jpg'" alt="Milk Ad" class="w-full h-72 object-cover" />
           <div class="p-4">
             <h4 class="font-bold text-sm text-[#121212]">Dairy Fresh Splash Ad</h4>
             <p class="text-xs text-gray-500 mt-1">Commercial dynamic splash visual</p>
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-xl transition duration-300">
-          <img src="ad-headphone.jpg" alt="Headphone Ad" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h4 class="font-bold text-sm text-[#121212]">Headphone Campaign</h4>
-            <p class="text-xs text-gray-500 mt-1">Social media commercial banner</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 3: Digital Vector Art -->
-  <section id="art" class="py-24 px-6 bg-[#121212] text-white">
-    <div class="max-w-6xl mx-auto space-y-12">
-      <div>
-        <span class="text-xs font-black uppercase tracking-widest text-[#FF6B35]">Creative Expression</span>
-        <h2 class="text-4xl md:text-5xl font-black font-serif-title mt-2">Vector Illustration</h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10 shadow-lg">
-          <img src="art-kaali.jpg" alt="Maa Kaali Art" class="w-full h-80 object-cover" />
-          <div class="p-4">
-            <h4 class="font-bold text-sm text-white">Maa Kaali Artwork</h4>
-            <p class="text-xs text-gray-400 mt-1">Expressive traditional-inspired digital art</p>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10 shadow-lg">
-          <img src="art-vector.jpg" alt="Vector Art" class="w-full h-80 object-cover" />
-          <div class="p-4">
-            <h4 class="font-bold text-sm text-white">Stylized Vector Art</h4>
-            <p class="text-xs text-gray-400 mt-1">Clean line art and digital coloring</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section with WhatsApp & Phone -->
-  <footer id="contact" class="bg-[#FAF6F0] py-20 px-6 border-t-4 border-[#FF6B35] text-center">
-    <div class="max-w-3xl mx-auto space-y-6">
-      <span class="text-xs font-bold uppercase tracking-widest text-[#D32F2F]">Let's Connect</span>
-      <h2 class="text-4xl md:text-5xl font-serif-title font-black text-[#121212]">
-        Have a creative project?<br />Let's bring it to life.
-      </h2>
-      <p class="text-gray-600 text-sm">
-        Feel free to reach out directly via WhatsApp, call, or email for projects and inquiries.
-      </p>
-
-      <div class="flex flex-wrap justify-center gap-4 pt-4">
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-95 transition shadow-md">
-          Chat on WhatsApp
-        </a>
-        <!-- Call Button -->
-        <a href="tel:+91XXXXXXXXXX" class="inline-flex items-center gap-2 bg-[#121212] text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#D32F2F] transition shadow-md">
-          Call: +91 XXXXX XXXXX
-        </a>
-      </div>
-
-      <div class="pt-12 text-xs text-gray-400 border-t border-black/10">
-        © 2026 Varnika Seth · Visual Artist & Designer · Varanasi
-      </div>
-    </div>
-  </footer>
-
-  <!-- Cursor Tracking Script -->
-  <script>
-    const mascotCard = document.getElementById('mascot-card');
-    const mascotImg = document.getElementById('mascot-img');
-
-    window.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const mouseX = (clientX / innerWidth) - 0.5;
-      const mouseY = (clientY / innerHeight) - 0.5;
-
-      // 3D Tilt
-      mascotCard.style.transform = `perspective(1000px) rotateX(${-mouseY * 20}deg) rotateY(${mouseX * 20}deg) scale3d(1.02, 1.02, 1.02)`;
-      mascotImg.style.transform = `scale(1.06) translate(${mouseX * 12}px, ${mouseY * 10}px)`;
-    });
-
-    window.addEventListener('mouseleave', () => {
-      mascotCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      mascotImg.style.transform = `scale(1) translate(0px, 0px)`;
-    });
-  </script>
-</body>
-</html>
+        <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-

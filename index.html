@@ -36,32 +36,37 @@
       font-family: 'Dancing Script', cursive;
     }
 
-    /* Presentation Slide Transitions (Video 2 Style) */
+    /* Presentation Slide Deck Transitions (Video 2 Style) */
     .deck-slide {
       display: none;
       opacity: 0;
-      transform: translateX(30px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateX(60px) scale(0.97);
+      filter: blur(6px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .deck-slide.active {
       display: block;
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0) scale(1);
+      filter: blur(0);
     }
     .deck-slide.slide-exit {
       opacity: 0;
-      transform: translateX(-30px);
+      transform: translateX(-60px) scale(0.97);
+      filter: blur(6px);
     }
 
-    /* Staggered Content Animation */
-    .deck-slide.active .stagger-1 { animation: fadeInCard 0.4s ease 0.05s forwards; }
-    .deck-slide.active .stagger-2 { animation: fadeInCard 0.4s ease 0.15s forwards; }
-    .deck-slide.active .stagger-3 { animation: fadeInCard 0.4s ease 0.25s forwards; }
+    /* Staggered Card Entrance */
+    .deck-slide.active .stagger-1 { animation: slideReveal 0.45s ease 0.05s forwards; }
+    .deck-slide.active .stagger-2 { animation: slideReveal 0.45s ease 0.15s forwards; }
+    .deck-slide.active .stagger-3 { animation: slideReveal 0.45s ease 0.25s forwards; }
 
-    @keyframes fadeInCard {
+    @keyframes slideReveal {
       from {
         opacity: 0;
-        transform: translateY(16px);
+        transform: translateY(24px);
       }
       to {
         opacity: 1;
@@ -69,14 +74,14 @@
       }
     }
 
-    /* Floating Tool Icons */
+    /* Ambient Float Animations */
     @keyframes gentleFloat1 {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(4deg); }
+      50% { transform: translateY(-14px) rotate(4deg); }
     }
     @keyframes gentleFloat2 {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(10px) rotate(-4deg); }
+      50% { transform: translateY(14px) rotate(-4deg); }
     }
     .anim-float-1 { animation: gentleFloat1 4s ease-in-out infinite; }
     .anim-float-2 { animation: gentleFloat2 5s ease-in-out infinite; }
@@ -115,10 +120,10 @@
     </div>
   </header>
 
-  <!-- ================= SLIDE CONTAINER ================= -->
+  <!-- ================= MAIN SLIDE DECK CONTAINER ================= -->
   <main class="flex-1 pt-20 w-full">
 
-    <!-- ================= 1. HERO SLIDE (VIDEO 1 LAYOUT) ================= -->
+    <!-- ================= 1. HERO SLIDE (VIDEO 1 LAYOUT + MASSIVE AVATAR) ================= -->
     <section id="slide-hero" class="deck-slide active min-h-[calc(100vh-5rem)] bg-gradient-to-br from-[#E12A2A] via-[#C91A1A] to-[#990D0D] text-white relative overflow-hidden flex flex-col justify-between">
       
       <div class="max-w-7xl mx-auto w-full px-6 flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-between relative z-20 py-8 lg:py-0">
@@ -147,7 +152,6 @@
           </p>
 
           <div class="flex items-center gap-4 pt-2">
-            <!-- Navigates directly into My Work / Aura Fine Jewels -->
             <button onclick="goToSlide('aura')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition">
               Selected Work
             </button>
@@ -157,31 +161,31 @@
           </div>
         </div>
 
-        <!-- Clean Mascot Character with Soft Floating Elements -->
-        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[500px] sm:h-[600px] lg:h-[720px] relative stagger-2">
+        <!-- Right Column: Massive Bottom-Bleed Avatar (88vh Scale) -->
+        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[560px] sm:h-[680px] lg:h-[85vh] relative stagger-2">
           
           <!-- Floating Pen Tool -->
-          <div class="anim-float-1 absolute top-12 left-6 z-30 pointer-events-none">
-            <div class="bg-white/20 backdrop-blur-md border border-white/40 p-3 rounded-2xl shadow-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          <div class="anim-float-1 absolute top-8 left-4 z-30 pointer-events-none">
+            <div class="bg-white/20 backdrop-blur-md border border-white/40 p-3.5 rounded-2xl shadow-xl flex items-center justify-center">
+              <svg class="w-7 h-7 text-white fill-current" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             </div>
           </div>
 
           <!-- Floating Color Palette -->
-          <div class="anim-float-2 absolute top-20 right-8 z-30 pointer-events-none">
-            <div class="bg-white/20 backdrop-blur-md border border-white/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-1.5">
-              <span class="w-3.5 h-3.5 rounded-full bg-[#FAF6F0]"></span>
-              <span class="w-3.5 h-3.5 rounded-full bg-[#FF6B35]"></span>
-              <span class="w-3.5 h-3.5 rounded-full bg-[#132448]"></span>
+          <div class="anim-float-2 absolute top-16 right-4 z-30 pointer-events-none">
+            <div class="bg-white/20 backdrop-blur-md border border-white/40 p-3 rounded-2xl shadow-xl flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full bg-[#FAF6F0]"></span>
+              <span class="w-4 h-4 rounded-full bg-[#FF6B35]"></span>
+              <span class="w-4 h-4 rounded-full bg-[#132448]"></span>
             </div>
           </div>
 
-          <!-- Pure, Original Mascot Image (No cutouts or pupil layers) -->
-          <div class="relative w-full max-w-[520px] h-full flex items-end justify-center select-none">
+          <!-- Clean Original Mascot Image (Massive Bottom Alignment) -->
+          <div class="relative w-full max-w-[620px] h-full flex items-end justify-center select-none overflow-hidden">
             <img 
               src="mascot.png" 
               alt="Varnika Seth Mascot"
-              class="h-full w-auto max-h-[78vh] object-contain object-bottom drop-shadow-[0_25px_35px_rgba(0,0,0,0.55)] select-none pointer-events-none"
+              class="h-full w-auto max-h-[88vh] object-contain object-bottom drop-shadow-[0_30px_45px_rgba(0,0,0,0.6)] select-none pointer-events-none scale-105 origin-bottom"
             />
           </div>
 
@@ -531,26 +535,36 @@
     </div>
   </div>
 
-  <!-- ================= SLIDE TRANSITION JAVASCRIPT ================= -->
+  <!-- ================= SLIDE TRANSITION LOGIC ================= -->
   <script>
-    // Smooth Presentation Slide Transitions (Video 2 Style)
     function goToSlide(slideId) {
       const activeSlide = document.querySelector('.deck-slide.active');
       const nextSlide = document.getElementById(`slide-${slideId}`);
 
       if (!nextSlide || activeSlide === nextSlide) return;
 
+      // 1. Exit current slide
       activeSlide.classList.add('slide-exit');
 
       setTimeout(() => {
         activeSlide.classList.remove('active', 'slide-exit');
         activeSlide.style.display = 'none';
 
+        // 2. Prepare next slide entrance state
         nextSlide.style.display = 'block';
-        setTimeout(() => {
-          nextSlide.classList.add('active');
-        }, 20);
-      }, 250);
+        nextSlide.style.opacity = '0';
+        nextSlide.style.transform = 'translateX(60px) scale(0.97)';
+        nextSlide.style.filter = 'blur(6px)';
+
+        // Force browser layout repaint
+        void nextSlide.offsetWidth;
+
+        // 3. Trigger fluid entrance
+        nextSlide.classList.add('active');
+        nextSlide.style.opacity = '';
+        nextSlide.style.transform = '';
+        nextSlide.style.filter = '';
+      }, 260);
 
       // Update Nav Button Active Highlights
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -592,4 +606,3 @@
   </script>
 </body>
 </html>
- 

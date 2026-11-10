@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,14 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    html, body {
+    /* Natural Browser Scroll Enabled */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
       margin: 0;
       padding: 0;
       background-color: #FAF6F0;
       color: #121212;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      overflow-y: auto !important; /* Continuous natural browser scroll */
     }
     .font-serif-title {
       font-family: 'Playfair Display', serif;
@@ -31,74 +34,31 @@
       background: linear-gradient(135deg, #E12A2A 0%, #C91A1A 50%, #990D0D 100%);
     }
 
-    /* Floating Keyframe Motion */
-    @keyframes floatSoft {
+    /* Floating Tools Motion */
+    @keyframes float1 {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-12px) rotate(4deg); }
     }
-    @keyframes floatReverse {
+    @keyframes float2 {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(10px) rotate(-5deg); }
     }
-    @keyframes sparkleGlow {
-      0%, 100% { opacity: 0.6; transform: scale(0.95); }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.6; transform: scale(0.9); }
       50% { opacity: 1; transform: scale(1.15) rotate(15deg); }
     }
-    .anim-tool-1 { animation: floatSoft 4s ease-in-out infinite; }
-    .anim-tool-2 { animation: floatReverse 5s ease-in-out infinite; }
-    .anim-sparkle { animation: sparkleGlow 2.5s ease-in-out infinite; }
+    .anim-tool-1 { animation: float1 4s ease-in-out infinite; }
+    .anim-tool-2 { animation: float2 5s ease-in-out infinite; }
+    .anim-sparkle { animation: sparkle 2.5s ease-in-out infinite; }
 
-    /* Eye Sockets and Pupils Geometry */
-    .eye-socket {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      overflow: hidden;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 25;
+    /* 3D Perspective Stage */
+    .mascot-stage {
+      perspective: 1200px;
     }
-    /* Coordinates matching Varnika's mascot face proportions */
-    .eye-left {
-      top: 44.5%;
-      left: 32.5%;
-    }
-    .eye-right {
-      top: 44.5%;
-      left: 58.5%;
-    }
-    .pupil {
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #4a2810 0%, #201005 60%, #000000 100%);
-      box-shadow: inset 0 0 4px rgba(0,0,0,0.8), 0 0 5px rgba(0,0,0,0.4);
-      transition: transform 0.05s ease-out;
-    }
-    /* Specular light reflections inside eyes */
-    .pupil::before {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 5px;
-      width: 8px;
-      height: 8px;
-      background: #ffffff;
-      border-radius: 50%;
-    }
-    .pupil::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      right: 6px;
-      width: 4px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
+    #mascot-tilt {
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease-out;
+      will-change: transform;
     }
   </style>
 </head>
@@ -114,7 +74,7 @@
           Draft To Frame<span class="text-[#FF6B35]">.</span>
         </a>
 
-        <!-- Continuous Scroll Anchor Links -->
+        <!-- Continuous Scroll Links -->
         <nav class="hidden lg:flex items-center space-x-1 bg-black/25 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
           <a href="#about" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">About</a>
           <a href="#aura" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Aura Jewels</a>
@@ -167,17 +127,17 @@
         </div>
       </div>
 
-      <!-- Right Column: Massive Mascot with Synchronized Head & Eye Pupil Physics -->
-      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[520px] sm:h-[620px] lg:h-[760px] relative">
+      <!-- Right Column: Massive Clean Mascot with Parallax Physics -->
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[500px] sm:h-[600px] lg:h-[740px] relative mascot-stage">
         
-        <!-- Interactive Design Tools Floating Around Mascot -->
-        <div id="tool-pen" class="tool-elem anim-tool-1 absolute top-12 left-6 z-30 transition-transform duration-100 ease-out">
+        <!-- Interactive Design Tools (Floating Parallax) -->
+        <div id="tool-pen" class="anim-tool-1 absolute top-12 left-6 z-30 transition-transform duration-100 ease-out pointer-events-none">
           <div class="bg-white/20 backdrop-blur-md border border-white/40 p-3 rounded-2xl shadow-xl flex items-center justify-center">
             <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
           </div>
         </div>
 
-        <div id="tool-palette" class="tool-elem anim-tool-2 absolute top-24 right-6 z-30 transition-transform duration-100 ease-out">
+        <div id="tool-palette" class="anim-tool-2 absolute top-24 right-6 z-30 transition-transform duration-100 ease-out pointer-events-none">
           <div class="bg-white/20 backdrop-blur-md border border-white/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-1.5">
             <span class="w-3.5 h-3.5 rounded-full bg-[#FAF6F0]"></span>
             <span class="w-3.5 h-3.5 rounded-full bg-[#FF6B35]"></span>
@@ -185,39 +145,28 @@
           </div>
         </div>
 
-        <div id="tool-star" class="tool-elem anim-sparkle absolute top-1/2 -left-3 z-30 transition-transform duration-100 ease-out">
+        <div id="tool-star" class="anim-sparkle absolute top-1/2 -left-3 z-30 transition-transform duration-100 ease-out pointer-events-none">
           <div class="bg-white/15 backdrop-blur-md border border-white/30 p-2 rounded-full shadow-lg">
             <svg class="w-5 h-5 text-yellow-300 fill-current" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
           </div>
         </div>
 
-        <!-- Head Wrapper (3D Rotation) -->
-        <div id="mascot-wrapper" class="relative w-full max-w-[550px] h-full flex items-end justify-center transition-transform duration-100 ease-out select-none">
-          
-          <!-- Base Mascot Character Image -->
+        <!-- Clean Mascot Tilt Container -->
+        <div id="mascot-tilt" class="relative w-full max-w-[540px] h-full flex items-end justify-center select-none">
           <img 
             id="mascot-img"
             src="macot.png.png" 
             onerror="this.onerror=null; this.src='mascot.png';"
             alt="Varnika Seth Mascot"
-            class="h-full w-auto max-h-[82vh] object-contain object-bottom drop-shadow-[0_25px_40px_rgba(0,0,0,0.55)] select-none pointer-events-none"
+            class="h-full w-auto max-h-[80vh] object-contain object-bottom drop-shadow-[0_25px_40px_rgba(0,0,0,0.55)] select-none pointer-events-none"
           />
-
-          <!-- Independent Moving Pupils (Synchronized with Head turn) -->
-          <div class="eye-socket eye-left">
-            <div id="pupil-left" class="pupil"></div>
-          </div>
-          <div class="eye-socket eye-right">
-            <div id="pupil-right" class="pupil"></div>
-          </div>
-
         </div>
 
       </div>
 
     </div>
 
-    <!-- Persistent Torn-Paper Jagged Horizon at Red Screen Bottom -->
+    <!-- Organic Horizon Edge -->
     <div class="w-full overflow-hidden leading-none z-30">
       <svg viewBox="0 0 1200 50" preserveAspectRatio="none" class="w-full h-12 fill-[#FAF6F0]">
         <path d="M0,25 Q40,32 75,20 T150,28 T230,18 T310,30 T390,16 T470,29 T550,19 T630,31 T710,18 T790,28 T870,17 T950,30 T1030,21 T1110,29 T1200,22 L1200,50 L0,50 Z"></path>
@@ -250,7 +199,7 @@
           </div>
         </div>
 
-        <!-- Copy & Software Skills -->
+        <!-- Copy & Software Column -->
         <div class="lg:col-span-7 space-y-6">
           <div class="bg-white p-8 rounded-3xl border-2 border-black/10 shadow-sm space-y-4">
             <h3 class="text-2xl font-bold font-serif-title text-[#121212]">
@@ -276,7 +225,7 @@
             </div>
           </div>
 
-          <!-- Core Disciplines -->
+          <!-- Disciplines -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-bold text-[#121212]">
             <div class="p-3 bg-white rounded-xl border border-black/10">Brand Identity</div>
             <div class="p-3 bg-white rounded-xl border border-black/10">Luxury Packaging</div>
@@ -291,7 +240,6 @@
   <!-- ================= SECTION 3: AURA FINE JEWELS ================= -->
   <section id="aura" class="py-24 px-6 bg-[#121212] text-white">
     <div class="max-w-6xl mx-auto space-y-12">
-      <!-- Header & 2-Line Idea -->
       <div class="bg-[#1e1e1e] rounded-3xl p-8 border border-white/10 shadow-lg space-y-3">
         <span class="text-xs font-black uppercase tracking-widest text-[#FF6B35]">Case Study 01 • Luxury Diamond Jewellery</span>
         <h2 class="text-4xl md:text-5xl font-black font-serif-title">Aura Fine Jewels</h2>
@@ -300,7 +248,6 @@
         </div>
       </div>
 
-      <!-- 5-Card Packaging & Billboard Suite -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-mockup.jpg', 'Aura Fine Jewels', 'Complete luxury brand packshot mockup')">
           <div class="rounded-xl overflow-hidden h-44 bg-black/40">
@@ -343,7 +290,6 @@
   <!-- ================= SECTION 4: GOLDEN CRUMB BAKERY ================= -->
   <section id="bakery" class="py-24 px-6 bg-[#FAF6F0]">
     <div class="max-w-6xl mx-auto space-y-12">
-      <!-- Header & 2-Line Idea -->
       <div class="bg-white rounded-3xl p-8 border-2 border-black/10 shadow-sm space-y-3">
         <span class="text-xs font-black uppercase tracking-widest text-[#D32F2F]">Case Study 02 • Artisan Patisserie</span>
         <h2 class="text-4xl md:text-5xl font-black font-serif-title text-[#121212]">Golden Crumb Bakery</h2>
@@ -352,7 +298,6 @@
         </div>
       </div>
 
-      <!-- 6-Grid Full Brand Suite -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-logo.jpg', 'Logo Grid Variations', 'Six-variation brand exploration grid')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
@@ -408,7 +353,6 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Sprite -->
         <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-sprite.jpg', 'Sprite Refreshment Splash', 'Dynamic beverage splash product manipulation')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
             <img src="ad-sprite.jpg" onerror="this.onerror=null; this.src='ad-sprite.jpg.png';" alt="Sprite Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -419,7 +363,6 @@
           </div>
         </div>
 
-        <!-- Milk -->
         <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-milk.jpg', 'Dairy Milk Splash Commercial', 'Sculpted liquid milk motion layout')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
             <img src="ad-milk.jpg" onerror="this.onerror=null; this.src='ad-milk.jpg.png';" alt="Milk Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -430,7 +373,6 @@
           </div>
         </div>
 
-        <!-- Headphone -->
         <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-headphone.jpg', 'Modern Audio Campaign', 'Clean geometric social media banner')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
             <img src="ad-headphone.jpg" onerror="this.onerror=null; this.src='ad-headphone.jpg.png';" alt="Headphone Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -441,7 +383,6 @@
           </div>
         </div>
 
-        <!-- Jascrcent Perfume -->
         <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-perfume.jpg', 'Jascrcent Perfume', 'Isometric 3D architectural geometry pamphlet')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
             <img src="ad-perfume.jpg" onerror="this.onerror=null; this.src='perfume pamphlet.png';" alt="Perfume Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -464,7 +405,6 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <!-- Money Heist -->
         <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-money-heist.jpg', 'Money Heist Concept Poster', 'Fragmented photo-strips of the Professor with iconic Dali masks and flying currency')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
             <img src="poster-money-heist.jpg" onerror="this.onerror=null; this.src='money hiest.jpg';" alt="Money Heist" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -475,7 +415,6 @@
           </div>
         </div>
 
-        <!-- Wanna Be Director -->
         <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-director.jpg', 'Wanna Be Director Recruitment Poster', 'Vintage unwinding celluloid film-strip with retro halftone cinema vibes')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
             <img src="poster-director.jpg" onerror="this.onerror=null; this.src='wanna be director.jpg';" alt="Director Poster" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -486,7 +425,6 @@
           </div>
         </div>
 
-        <!-- Cyberpunk Future -->
         <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-cyberpunk.jpg', 'Unlock Your Creative Future', 'Cybernetic neural circuits and glowing neon binary code photo manipulation')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
             <img src="poster-cyberpunk.jpg" onerror="this.onerror=null; this.src='UNLOCK YOUR CREATIVE FUTURE.jpg';" alt="Cyberpunk Future" class="w-full h-full object-cover group-hover:scale-105 transition" />
@@ -582,11 +520,9 @@
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT: SYNCHRONIZED PUPIL & HEAD TRACKING ================= -->
+  <!-- Smooth 3D Cursor Parallax (Natural Tilt, No Glitches) -->
   <script>
-    const mascotWrapper = document.getElementById('mascot-wrapper');
-    const pupilLeft = document.getElementById('pupil-left');
-    const pupilRight = document.getElementById('pupil-right');
+    const mascotTilt = document.getElementById('mascot-tilt');
     const toolPen = document.getElementById('tool-pen');
     const toolPalette = document.getElementById('tool-palette');
     const toolStar = document.getElementById('tool-star');
@@ -597,43 +533,19 @@
       const mouseX = (clientX / innerWidth) - 0.5;
       const mouseY = (clientY / innerHeight) - 0.5;
 
-      // 1. Synchronized Head & Posture 3D Rotation
-      if (mascotWrapper) {
-        mascotWrapper.style.transform = `perspective(1000px) rotateY(${mouseX * 16}deg) rotateX(${-mouseY * 8}deg)`;
+      // Clean 3D Posture Tilt (Exactly like Video 1)
+      if (mascotTilt) {
+        mascotTilt.style.transform = `rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 8}deg) translateZ(10px)`;
       }
 
-      // 2. Mathematical 360-Degree Pupil Cursor Tracking
-      function trackEye(socketElement, pupilElement) {
-        if (!socketElement || !pupilElement) return;
-        const rect = socketElement.getBoundingClientRect();
-        const eyeCenterX = rect.left + rect.width / 2;
-        const eyeCenterY = rect.top + rect.height / 2;
-        
-        const deltaX = clientX - eyeCenterX;
-        const deltaY = clientY - eyeCenterY;
-        const angle = Math.atan2(deltaY, deltaX);
-        
-        // Maximum pupil radius distance inside socket
-        const distance = Math.min(9, Math.hypot(deltaX, deltaY) / 30);
-        const pupilX = Math.cos(angle) * distance;
-        const pupilY = Math.sin(angle) * distance;
-
-        pupilElement.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
-      }
-
-      trackEye(document.querySelector('.eye-left'), pupilLeft);
-      trackEye(document.querySelector('.eye-right'), pupilRight);
-
-      // 3. Floating Design Tools Parallax (Moving opposite to cursor for 3D depth)
+      // Parallax for Floating Design Tools
       if (toolPen) toolPen.style.transform = `translate(${-mouseX * 25}px, ${-mouseY * 20}px)`;
       if (toolPalette) toolPalette.style.transform = `translate(${-mouseX * 30}px, ${mouseY * 22}px)`;
       if (toolStar) toolStar.style.transform = `translate(${mouseX * 20}px, ${-mouseY * 25}px)`;
     });
 
     window.addEventListener('mouseleave', () => {
-      if (mascotWrapper) mascotWrapper.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
-      if (pupilLeft) pupilLeft.style.transform = `translate(0px, 0px)`;
-      if (pupilRight) pupilRight.style.transform = `translate(0px, 0px)`;
+      if (mascotTilt) mascotTilt.style.transform = `rotateY(0deg) rotateX(0deg) translateZ(0px)`;
       if (toolPen) toolPen.style.transform = `translate(0px, 0px)`;
       if (toolPalette) toolPalette.style.transform = `translate(0px, 0px)`;
       if (toolStar) toolStar.style.transform = `translate(0px, 0px)`;

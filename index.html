@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varnika Seth | Visuals & Design</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #FAF8F5; color: #1a1a1a; font-family: sans-serif; }
+    .perspective { perspective: 1000px; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <nav class="max-w-6xl mx-auto flex justify-between items-center py-6 px-6">
+    <div class="text-xl font-bold tracking-tight text-[#132448]">DRAFT TO FRAME</div>
+    <div class="space-x-6 text-sm font-medium">
+      <a href="#work" class="hover:text-[#5A1A24]">Work</a>
+      <a href="#about" class="hover:text-[#5A1A24]">About</a>
+      <a href="#contact" class="hover:text-[#5A1A24]">Contact</a>
+    </div>
+  </nav>
+
+  <header class="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="md:w-1/2 space-y-6">
+      <p class="text-sm font-semibold tracking-widest text-[#5A1A24] uppercase">Brand Identity & Visual Arts</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-[#132448]">
+        Ideas take shape.<br />Visuals tell stories.
+      </h1>
+      <p class="text-gray-600 leading-relaxed">
+        Specializing in editorial brand identities, packaging dielines, 2D animations, and digital illustrations.
+      </p>
+      <a href="#work" class="inline-block bg-[#132448] text-white px-8 py-3 rounded-full font-medium hover:bg-[#5A1A24] transition">
+        View Selected Work
+      </a>
+    </div>
+
+    <div class="md:w-1/2 flex justify-center perspective">
+      <img 
+        id="mascot-img" 
+        src="mascot.png" 
+        alt="Portfolio Mascot" 
+        class="w-72 md:w-80 rounded-2xl shadow-xl transition-transform duration-100 ease-out select-none"
+      />
+    </div>
+  </header>
+
+  <script>
+    const mascot = document.getElementById('mascot-img');
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 24;
+      const y = (e.clientY / innerHeight - 0.5) * -24;
+      mascot.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+  </script>
+</body>
+</html>

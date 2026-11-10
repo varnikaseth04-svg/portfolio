@@ -1,209 +1,290 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varnika Seth | Visuals & Design Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cream: #FAF6F0;
-      --red: #D32F2F;
-      --orange: #FF6B35;
-      --black: #121212;
-    }
-    body {
-      background-color: var(--cream);
-      color: var(--black);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-    }
-    .font-serif-title {
-      font-family: 'Playfair Display', serif;
-    }
-    .perspective-container {
-      perspective: 1000px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varnika Seth · Graphic Designer & Visual Artist</title>
+<meta name="description" content="Portfolio of Varnika Seth, graphic designer and visual artist based in Varanasi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { cream:'#FAF6F0', crimson:'#D32F2F', flame:'#FF6B35', ink:'#121212' },
+  fontFamily: { display:['"Playfair Display"','serif'], body:['"Plus Jakarta Sans"','sans-serif'] }
+}}}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#FAF6F0;color:#121212}
+  .tear{height:64px;margin-top:-1px;position:relative;line-height:0}
+  .tear svg{position:absolute;inset:0;width:100%;height:100%}
+  .paper{background:#FAF6F0;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .grain::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:60;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .card img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .card:hover img{transform:scale(1.06)}
+  .card .cap{transform:translateY(100%);transition:transform .35s}
+  .card:hover .cap,.card:focus-visible .cap{transform:none}
+  #mascotWrap{perspective:900px}
+  #mascot{transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform}
+  #modal{transition:opacity .25s}
+  #modal.hidden{display:none}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}#mascot{transition:none}}
+</style>
 </head>
-<body class="selection:bg-[#FF6B35] selection:text-white">
+<body class="grain">
 
-  <!-- Navigation Bar -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-black/10 px-6 py-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="#" class="font-serif-title text-2xl font-black text-[#121212]">
-        DRAFT <span class="text-[#D32F2F]">TO</span> FRAME<span class="text-[#FF6B35]">.</span>
-      </a>
-      <div class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-wider">
-        <a href="#about" class="hover:text-[#D32F2F] transition">About</a>
-        <a href="#branding" class="hover:text-[#D32F2F] transition">Branding</a>
-        <a href="#advertising" class="hover:text-[#D32F2F] transition">Advertising</a>
-        <a href="#art" class="hover:text-[#D32F2F] transition">Digital Art</a>
-        <a href="#contact" class="hover:text-[#FF6B35] transition">Contact</a>
-      </div>
-      <a href="#contact" class="bg-[#121212] text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#D32F2F] transition">
-        Let's Connect
-      </a>
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 bg-cream/85 backdrop-blur border-b border-ink/10">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
+    <a href="#home" class="font-display font-black text-xl">V<span class="text-crimson">.</span>Seth</a>
+    <div class="flex gap-5 text-sm font-semibold">
+      <a href="#about" class="hover:text-crimson">About</a>
+      <a href="#work" class="hover:text-crimson">Work</a>
+      <a href="#contact" class="hover:text-crimson">Contact</a>
     </div>
   </nav>
+</header>
 
-  <!-- Hero Section with Center Mascot -->
-  <section class="min-h-screen pt-28 pb-16 px-6 flex flex-col items-center justify-center text-center relative">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#121212] text-white text-xs font-bold uppercase tracking-widest mb-6">
-      <span class="w-2 h-2 rounded-full bg-[#FF6B35] animate-ping"></span>
-      Graphic Designer & Visual Artist
+<!-- HERO -->
+<section id="home" class="relative bg-cream min-h-screen flex flex-col items-center justify-center text-center px-5 pt-24 pb-16 overflow-hidden">
+  <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-flame/20 blur-3xl"></div>
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-crimson/15 blur-3xl"></div>
+  <div id="mascotWrap" class="relative w-56 h-56 sm:w-72 sm:h-72 mb-8">
+    <div id="mascot" class="relative w-full h-full">
+      <div class="absolute inset-4 rounded-full bg-flame" style="transform:translateZ(-30px)"></div>
+      <img id="mascotImg" src="mascot.png.png" data-fb="mascot.png" onerror="fb(this)" alt="Varnika's mascot character"
+           class="relative w-full h-full object-contain drop-shadow-2xl" style="transform:translateZ(40px)">
+      <div id="eyes"></div>
     </div>
+  </div>
+  <p class="text-crimson font-bold tracking-[.3em] uppercase text-xs mb-4">Portfolio 2026</p>
+  <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
+    Ideas take shape.<br><span class="italic text-crimson">Visuals tell stories.</span>
+  </h1>
+  <p class="mt-5 text-lg sm:text-xl font-medium text-ink/70">Graphic Designer &amp; Visual Artist</p>
+  <div class="mt-9 flex flex-wrap gap-4 justify-center">
+    <a href="#work" class="bg-crimson text-cream px-7 py-3 rounded-full font-bold shadow-lg hover:bg-ink transition">Explore Work</a>
+    <a href="#about" class="border-2 border-ink px-7 py-3 rounded-full font-bold hover:bg-ink hover:text-cream transition">About Me</a>
+  </div>
+</section>
 
-    <h1 class="text-4xl sm:text-6xl md:text-7xl font-black font-serif-title leading-[1.05] tracking-tight max-w-4xl text-[#121212] mb-6">
-      Ideas take shape.<br />
-      <span class="text-[#D32F2F] italic font-normal">Visuals</span> tell stories.
-    </h1>
+<div class="tear bg-cream" data-to="#D32F2F" data-accent="#FF6B35" data-seed="3"></div>
 
-    <!-- Mascot Display with Cursor Tilt -->
-    <div class="perspective-container my-4 relative">
-      <div id="mascot-card" class="relative w-64 h-80 sm:w-72 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#121212] bg-[#FAF6F0] transition-transform duration-75 ease-out flex items-center justify-center">
-        <img 
-          src="mascot.png" 
-          alt="Mascot" 
-          id="mascot-img"
-          class="w-full h-full object-cover object-top select-none pointer-events-none transition-transform duration-100 ease-out"
-        />
-      </div>
+<!-- ABOUT -->
+<section id="about" class="bg-crimson px-5 py-20">
+  <div class="max-w-5xl mx-auto paper p-6 sm:p-12 grid md:grid-cols-5 gap-10 items-center reveal" style="clip-path:polygon(0 1%,4% 0,9% 1.2%,15% 0,22% 1%,30% 0,38% 1.4%,47% 0,55% 1%,63% 0,72% 1.3%,81% 0,90% 1%,100% .5%,99.4% 30%,100% 62%,99.2% 100%,92% 99%,84% 100%,75% 98.8%,66% 100%,57% 99%,47% 100%,38% 98.9%,28% 100%,18% 99%,9% 100%,0 99%,.6% 70%,0 35%)">
+    <div class="md:col-span-2 relative mx-auto w-full max-w-xs">
+      <div class="absolute inset-0 bg-flame rotate-3"></div>
+      <img src="profile.jpg.png" data-fb="profile.jpg" onerror="fb(this)" alt="Varnika Seth"
+           class="relative w-full aspect-[4/5] object-cover -rotate-2 border-8 border-white shadow-xl bg-ink/10">
     </div>
-
-    <p class="max-w-xl text-gray-700 text-sm md:text-base mt-6 font-medium">
-      Specializing in brand identity systems, luxury packaging dielines, 2D vector art, and creative visual communications.
-    </p>
-
-    <div class="flex gap-4 mt-8">
-      <a href="#branding" class="bg-[#D32F2F] hover:bg-[#b71c1c] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider text-xs transition shadow-md">
-        Explore Work
-      </a>
-      <a href="#about" class="border-2 border-[#121212] hover:bg-[#121212] hover:text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider text-xs transition">
-        About Me
-      </a>
-    </div>
-  </section>
-
-  <!-- About Me Section (With Original Photo) -->
-  <section id="about" class="bg-[#D32F2F] text-white py-24 px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="flex justify-center">
-        <div class="relative w-72 h-96 sm:w-80 sm:h-[440px] rounded-3xl overflow-hidden border-4 border-[#121212] shadow-2xl bg-white rotate-[-2deg] hover:rotate-0 transition duration-300">
-          <img 
-            src="profile.jpg.png" 
-            onerror="this.src='profile.jpg'"
-            alt="Varnika Seth" 
-            class="w-full h-full object-cover"
-          />
-          <div class="absolute bottom-3 left-3 bg-[#121212] text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
-            Varnika Seth
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-6">
-        <span class="text-xs font-black tracking-widest uppercase bg-[#FF6B35] text-white px-3 py-1 rounded">About The Creator</span>
-        <h2 class="text-4xl md:text-5xl font-black font-serif-title leading-tight">
-          Blending business strategy with expressive fine arts.
-        </h2>
-        <p class="text-white/90 text-sm md:text-base leading-relaxed font-light">
-          I am a visual artist and graphic designer based in Varanasi. My work bridges structural brand logic—from custom packaging dielines to advertising layout—with vibrant traditional arts and 2D character illustration.
-        </p>
-        <div class="space-y-3 pt-2 text-xs font-bold">
-          <div class="flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#FF6B35]"></span>
-            Based in: Varanasi, Uttar Pradesh
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#FF6B35]"></span>
-            Tools: Adobe Illustrator, Photoshop, Animate, Krita, DaVinci Resolve
-          </div>
-        </div>
+    <div class="md:col-span-3">
+      <p class="text-crimson font-bold tracking-[.3em] uppercase text-xs mb-3">About Me</p>
+      <h2 class="font-display font-black text-4xl sm:text-5xl mb-5">Varnika Seth</h2>
+      <p class="text-ink/80 leading-relaxed mb-4">I'm a graphic designer and visual artist based in <b>Varanasi</b>, bridging brand identity systems and packaging dielines with 2D character art and fine arts.</p>
+      <p class="text-ink/80 leading-relaxed mb-6">From a jewellery label's die-cut box to a hand-drawn goddess in vector, I treat every project as a story waiting for its shape.</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-4 py-1.5 rounded-full bg-ink text-cream text-sm font-semibold">Adobe Illustrator</span>
+        <span class="px-4 py-1.5 rounded-full bg-crimson text-cream text-sm font-semibold">Photoshop</span>
+        <span class="px-4 py-1.5 rounded-full bg-flame text-ink text-sm font-semibold">Animate</span>
+        <span class="px-4 py-1.5 rounded-full border-2 border-ink text-sm font-semibold">Krita</span>
+        <span class="px-4 py-1.5 rounded-full border-2 border-ink text-sm font-semibold">DaVinci Resolve</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Section 1: Brand Identity & Packaging -->
-  <section id="branding" class="py-24 px-6 bg-[#121212] text-white">
-    <div class="max-w-6xl mx-auto space-y-16">
-      <div>
-        <span class="text-[#FF6B35] text-xs font-black uppercase tracking-widest">Case Study 01</span>
-        <h2 class="text-3xl md:text-5xl font-black font-serif-title mt-2">Aura Fine Jewellery</h2>
-        <p class="text-gray-400 text-xs mt-1">Luxury branding, dieline packaging, presentation boxes & billboards</p>
-      </div>
+<div class="tear bg-crimson" data-to="#FAF6F0" data-accent="#121212" data-seed="7"></div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-mockup.jpg.png" onerror="this.src='aura-mockup.jpg'" alt="Aura Mockup" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Brand Identity Mockup</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-diecut.jpg.png" onerror="this.src='aura-diecut.jpg'" alt="Aura Die Cut" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Custom Bag Dieline</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-poster.jpg.png" onerror="this.src='aura-poster.jpg'" alt="Aura Poster" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Jewellery Campaign Poster</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="aura-billboard.jpg.png" onerror="this.src='aura-billboard.jpg'" alt="Aura Billboard" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">OOH Billboard Display</div>
-        </div>
-      </div>
+<!-- WORK -->
+<section id="work" class="bg-cream px-5 py-16">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-crimson font-bold tracking-[.3em] uppercase text-xs mb-3 reveal">Selected Work</p>
+    <h2 class="font-display font-black text-4xl sm:text-6xl mb-14 reveal">The <span class="italic text-flame">Portfolio</span></h2>
+    <div id="categories" class="space-y-20"></div>
+  </div>
+</section>
 
-      <!-- Golden Crumb Bakery -->
-      <div class="pt-12 border-t border-white/10">
-        <span class="text-[#D32F2F] text-xs font-black uppercase tracking-widest">Case Study 02</span>
-        <h2 class="text-3xl md:text-5xl font-black font-serif-title mt-2">Golden Crumb Bakery</h2>
-        <p class="text-gray-400 text-xs mt-1">Editorial monogram, promotional stationery, and packaging box folds</p>
-      </div>
+<div class="tear bg-cream" data-to="#121212" data-accent="#D32F2F" data-seed="11"></div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-logo.jpg.png" onerror="this.src='bakery-logo.jpg'" alt="Bakery Logo" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Logo Variations</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-branding.jpg.png" onerror="this.src='bakery-branding.jpg'" alt="Bakery Branding" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Brand Board & Assets</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-box.jpg.png" onerror="this.src='bakery-box.jpg'" alt="Bakery Box" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Pastry Box Dieline</div>
-        </div>
-        <div class="group rounded-2xl overflow-hidden bg-[#1e1e1e] border border-white/10">
-          <img src="bakery-card.jpg.png" onerror="this.src='bakery-card.jpg'" alt="Bakery Card" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" />
-          <div class="p-3 text-xs font-bold text-gray-300">Stationery & QR Card</div>
-        </div>
-      </div>
+<!-- CONTACT -->
+<section id="contact" class="bg-ink text-cream px-5 py-20 text-center">
+  <div class="max-w-2xl mx-auto reveal">
+    <p class="text-flame font-bold tracking-[.3em] uppercase text-xs mb-3">Let's Work Together</p>
+    <h2 class="font-display font-black text-4xl sm:text-6xl mb-5">Have a story to <span class="italic text-flame">shape?</span></h2>
+    <p class="text-cream/70 mb-9">Brand identity, packaging, ads or character art. Say hello and let's build something memorable.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener" class="bg-[#25D366] text-ink px-8 py-3.5 rounded-full font-bold hover:scale-105 transition">WhatsApp Me</a>
+      <a href="tel:+91XXXXXXXXXX" class="bg-flame text-ink px-8 py-3.5 rounded-full font-bold hover:scale-105 transition">Call Now</a>
     </div>
-  </section>
+  </div>
+</section>
+<footer class="bg-ink text-cream/60 text-center text-sm py-6 border-t border-cream/10">© 2026 Varnika Seth · Varanasi</footer>
 
-  <!-- Section 2: Advertising Designs -->
-  <section id="advertising" class="py-24 px-6 bg-[#FAF6F0]">
-    <div class="max-w-6xl mx-auto space-y-12">
-      <div>
-        <span class="text-xs font-black uppercase tracking-widest text-[#D32F2F]">Commercial Design</span>
-        <h2 class="text-4xl md:text-5xl font-black font-serif-title mt-2 text-[#121212]">Advertising Posters</h2>
-      </div>
+<!-- LIGHTBOX MODAL -->
+<div id="modal" class="hidden fixed inset-0 z-[100] bg-ink/95 flex flex-col items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <button id="mClose" aria-label="Close" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-crimson text-cream text-2xl leading-none hover:bg-flame hover:text-ink transition">&times;</button>
+  <img id="mImg" src="" alt="" class="max-h-[72vh] max-w-full object-contain shadow-2xl">
+  <div class="mt-5 max-w-2xl text-center text-cream">
+    <h3 id="mTitle" class="font-display font-bold text-2xl sm:text-3xl"></h3>
+    <p id="mDesc" class="mt-2 text-cream/70 text-sm sm:text-base"></p>
+  </div>
+</div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-xl transition duration-300">
-          <img src="ad-sprite.jpg.png" onerror="this.src='ad-sprite.jpg'" alt="Cold Drink Ad" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h4 class="font-bold text-sm text-[#121212]">Sprite Refreshment Ad</h4>
-            <p class="text-xs text-gray-500 mt-1">Product manipulation & splash layout</p>
-          </div>
+<script>
+/* ---------- Image fallback: .jpg.png -> .jpg ---------- */
+function fb(img){
+  if(img.dataset.tried){ img.style.visibility='hidden'; return; }
+  img.dataset.tried = 1;
+  img.src = img.dataset.fb || img.src.replace('.jpg.png','.jpg');
+}
+
+/* ---------- Project data ---------- */
+const WORK = [
+  { cat:'Brand Identity & Packaging', projects:[
+    { name:'Aura Fine Jewellery', blurb:'A luxury jewellery identity spanning packaging, die-cut structure and outdoor campaign.', items:[
+      ['aura-mockup','Aura · Brand Mockup','Logo and brand collateral mockup for Aura Fine Jewellery.'],
+      ['aura-diecut','Aura · Die-cut Packaging','Custom packaging dieline engineered for Aura\u2019s signature box.'],
+      ['aura-poster','Aura · Campaign Poster','Editorial poster that carries Aura\u2019s elegant visual language.'],
+      ['aura-billboard','Aura · Billboard','Large-format billboard concept for Aura\u2019s launch.']]},
+    { name:'Golden Crumb Bakery', blurb:'A warm, handcrafted bakery identity with logo, branding system, box and card.', items:[
+      ['bakery-logo','Golden Crumb · Logo','Primary logo mark for Golden Crumb Bakery.'],
+      ['bakery-branding','Golden Crumb · Branding','Brand system with colours, type and supporting elements.'],
+      ['bakery-box','Golden Crumb · Packaging Box','Take-away box design with a warm, artisanal feel.'],
+      ['bakery-card','Golden Crumb · Business Card','Business card carrying the bakery identity.']]}
+  ]},
+  { cat:'Commercial Advertising', projects:[
+    { name:'Ad Campaigns', blurb:'Bold, product-first advertising visuals.', items:[
+      ['ad-sprite','Sprite Refreshment Ad','A crisp, cool creative built around refreshment.'],
+      ['ad-milk','Milk Splash Commercial','Dynamic splash composition for a dairy commercial.'],
+      ['ad-headphone','Headphone Campaign','Energetic campaign visual for a headphone launch.']]}
+  ]},
+  { cat:'Digital Art & Vector', projects:[
+    { name:'Vector Illustration', blurb:'Character-led 2D artwork rooted in fine arts.', items:[
+      ['art-kaali','Maa Kaali Vector Artwork','A vector portrayal of Maa Kaali with rich colour and detail.'],
+      ['art-vector','Stylized Vector Illustration','A stylized vector piece exploring shape and colour.']]}
+  ]}
+];
+
+const esc = s => s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const root = document.getElementById('categories');
+const accents = ['text-crimson','text-flame','text-crimson','text-flame'];
+
+root.innerHTML = WORK.map((c,i)=>`
+  <div class="reveal">
+    <div class="flex items-baseline gap-4 border-b-4 border-ink pb-3 mb-8">
+      <span class="font-display font-black text-5xl ${accents[i]}">0${i+1}</span>
+      <h3 class="font-display font-bold text-2xl sm:text-4xl">${esc(c.cat)}</h3>
+    </div>
+    ${c.projects.map(p=>`
+      <div class="mb-12">
+        <h4 class="font-display italic font-bold text-2xl">${esc(p.name)}</h4>
+        <p class="text-ink/65 mb-5 max-w-xl">${esc(p.blurb)}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 ${p.items.length>2?'lg:grid-cols-4':p.items.length===3?'lg:grid-cols-3':''} gap-5">
+          ${p.items.map(([f,t,d])=>`
+            <button class="card relative overflow-hidden bg-ink/5 aspect-[4/5] text-left shadow-md focus:outline-none focus-visible:ring-4 ring-flame"
+                    data-src="${f}.jpg.png" data-fb="${f}.jpg" data-title="${esc(t)}" data-desc="${esc(d)}" aria-label="View ${esc(t)}">
+              <img src="${f}.jpg.png" data-fb="${f}.jpg" onerror="fb(this)" alt="${esc(t)}" loading="lazy" class="w-full h-full object-cover">
+              <div class="cap absolute inset-x-0 bottom-0 bg-ink/90 text-cream p-3">
+                <p class="font-semibold text-sm">${esc(t)}</p>
+                <p class="text-xs text-flame">Click to enlarge</p>
+              </div>
+            </button>`).join('')}
         </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-xl transition duration-300">
-          <img src="ad-milk.jpg.png" onerror="this.src='ad-milk.jpg'" alt="Milk Ad" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h4 class="font-bold text-sm text-[#121212]">Dairy Fresh Splash Ad</h4>
-            <p class="text-xs text-gray-500 mt-1">Commercial dynamic splash visual</p>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-black/10 shadow-md hover:shadow-
+      </div>`).join('')}
+  </div>`).join('');
+
+/* ---------- Lightbox ---------- */
+const modal = document.getElementById('modal'), mImg = document.getElementById('mImg');
+let lastFocus = null;
+function openModal(src, fbSrc, title, desc){
+  lastFocus = document.activeElement;
+  mImg.dataset.tried = ''; mImg.dataset.fb = fbSrc; mImg.onerror = () => fb(mImg);
+  mImg.style.visibility = 'visible';
+  mImg.src = src; mImg.alt = title;
+  document.getElementById('mTitle').textContent = title;
+  document.getElementById('mDesc').textContent = desc;
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('mClose').focus();
+}
+function closeModal(){
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+  mImg.src = '';
+  if(lastFocus) lastFocus.focus();
+}
+root.addEventListener('click', e=>{
+  const card = e.target.closest('.card'); if(!card) return;
+  const img = card.querySelector('img');
+  const src = img.dataset.tried ? card.dataset.fb : card.dataset.src; // use whichever loaded
+  openModal(src, card.dataset.fb, card.dataset.title, card.dataset.desc);
+});
+document.getElementById('mClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target === modal) closeModal(); }); // click outside image/text
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+/* ---------- Mascot: 3D tilt + face tracking ---------- */
+const mascot = document.getElementById('mascot'), wrap = document.getElementById('mascotWrap'), mImgEl = document.getElementById('mascotImg');
+/* Optional: set pupil positions (percent of mascot box) to add tracking eyes, e.g. [{x:40,y:42},{x:60,y:42}] */
+const EYES = [];
+const eyeEls = EYES.map(p=>{
+  const w = document.createElement('div');
+  w.className = 'absolute rounded-full bg-cream';
+  w.style.cssText = `left:${p.x}%;top:${p.y}%;width:9%;height:9%;transform:translate(-50%,-50%) translateZ(50px)`;
+  const pupil = document.createElement('div');
+  pupil.className = 'absolute rounded-full bg-ink';
+  pupil.style.cssText = 'inset:20%;transition:transform .08s';
+  w.appendChild(pupil); document.getElementById('eyes').appendChild(w); return pupil;
+});
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function track(x, y){
+  if(still) return;
+  const r = wrap.getBoundingClientRect();
+  const dx = Math.max(-1, Math.min(1, (x - (r.left + r.width/2)) / (innerWidth/2)));
+  const dy = Math.max(-1, Math.min(1, (y - (r.top + r.height/2)) / (innerHeight/2)));
+  mascot.style.transform = `rotateY(${dx*18}deg) rotateX(${-dy*14}deg)`;
+  mImgEl.style.transform = `translateZ(40px) translate(${dx*10}px,${dy*8}px)`; // face follows cursor
+  eyeEls.forEach(p => p.style.transform = `translate(${dx*30}%,${dy*30}%)`);
+}
+addEventListener('mousemove', e => track(e.clientX, e.clientY));
+addEventListener('touchmove', e => { const t = e.touches[0]; track(t.clientX, t.clientY); }, {passive:true});
+document.addEventListener('mouseleave', () => {
+  mascot.style.transform = ''; mImgEl.style.transform = 'translateZ(40px)';
+  eyeEls.forEach(p => p.style.transform = '');
+});
+
+/* ---------- Torn-paper dividers (layered, randomised edges) ---------- */
+function rng(seed){ return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+function edge(rand, base, amp, steps=70){
+  let d = '';
+  for(let i=0;i<=steps;i++){
+    const x = (i/steps)*1000;
+    const y = base + (rand()-.5)*amp*2 + (rand()>.85 ? amp*.8 : 0);
+    d += (i?'L':'M') + x.toFixed(1) + ',' + y.toFixed(1);
+  }
+  return d;
+}
+document.querySelectorAll('.tear').forEach(el=>{
+  const r = rng(+el.dataset.seed || 5);
+  const accent = el.dataset.accent, next = el.dataset.to;
+  const layers = [
+    {fill:accent, base:26, amp:12},        // accent strip peeking out
+    {fill:'#FAF6F0', base:34, amp:9, op:.9}, // thin cream paper layer
+    {fill:next, base:44, amp:9}            // next section
+  ];
+  el.innerHTML = `<svg viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true">` +
+    layers.map(l => `<path d="${edge(r,l.base,l.amp)}L1000,64L0,64Z" fill="${l.fill}" opacity="${l.op||1}"/>`).join('') + `</svg>`;
+});
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

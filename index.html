@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full">
+
+  
+       <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Varnika Seth | Founder of Draft to Frame</title>
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --cream: #FAF6F0;
-      --red: #D32F2F;
-      --deep-crimson: #8B0000;
-      --orange: #FF6B35;
-      --black: #121212;
-    }
     body {
-      background-color: var(--cream);
-      color: var(--black);
+      background-color: #FAF6F0;
+      color: #121212;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
     }
@@ -31,115 +25,67 @@
     .font-script {
       font-family: 'Dancing Script', cursive;
     }
-
-    /* Deck Transition States */
-    .slide-section {
-      display: none;
-      opacity: 0;
-      transform: translateX(40px);
-      filter: blur(4px);
-      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .slide-section.active {
-      display: block;
-      opacity: 1;
-      transform: translateX(0);
-      filter: blur(0);
-    }
-    .slide-section.exiting {
-      opacity: 0;
-      transform: translateX(-40px);
-      filter: blur(4px);
-    }
-
-    /* Stagger reveals inside slides */
-    .slide-section.active .stagger-1 { animation: fadeInUp 0.4s ease 0.05s forwards; }
-    .slide-section.active .stagger-2 { animation: fadeInUp 0.4s ease 0.15s forwards; }
-    .slide-section.active .stagger-3 { animation: fadeInUp 0.4s ease 0.25s forwards; }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Persistent Torn-Paper Deckle Edge at bottom */
-    .torn-horizon {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      pointer-events: none;
-      z-index: 40;
-    }
   </style>
 </head>
-<body class="h-full flex flex-col justify-between selection:bg-[#FF6B35] selection:text-white pb-20">
+<body class="selection:bg-[#FF6B35] selection:text-white">
 
-  <!-- Top Minimalist Navigation Bar -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-[#FAF6F0]/85 backdrop-blur-md border-b border-black/10">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-      <!-- Brand Logo -->
-      <a href="javascript:void(0)" onclick="goToSlide('hero')" class="flex flex-col">
-        <span class="font-serif-title text-xl md:text-2xl font-black tracking-tight text-[#121212]">
-          DRAFT <span class="text-[#D32F2F]">TO</span> FRAME<span class="text-[#FF6B35]">.</span>
-        </span>
-        <span class="text-[10px] tracking-widest uppercase font-bold text-gray-500">By Varnika Seth</span>
-      </a>
+  <!-- ================= SECTION 1: FULL RED HERO (Exact Reference) ================= -->
+  <section id="hero" class="relative min-h-screen bg-gradient-to-br from-[#E12A2A] via-[#C91A1A] to-[#990D0D] text-white flex flex-col justify-between overflow-hidden">
+    
+    <!-- Top Pill Navbar -->
+    <header class="w-full pt-6 px-6 z-30">
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="#hero" class="text-white/90 text-sm font-bold tracking-widest uppercase">
+          Draft To Frame<span class="text-[#FF6B35]">.</span>
+        </a>
 
-      <!-- Category Tabs (Slide Switchers) -->
-      <nav class="hidden lg:flex items-center space-x-1 bg-black/5 p-1.5 rounded-full border border-black/10">
-        <button onclick="goToSlide('hero')" data-tab="hero" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#121212] transition bg-white shadow-sm">Home</button>
-        <button onclick="goToSlide('about')" data-tab="about" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">About</button>
-        <button onclick="goToSlide('branding')" data-tab="branding" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">Branding</button>
-        <button onclick="goToSlide('advertising')" data-tab="advertising" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">Advertising</button>
-        <button onclick="goToSlide('motion')" data-tab="motion" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">Motion & 2D</button>
-        <button onclick="goToSlide('art')" data-tab="art" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">Digital Art</button>
-        <button onclick="goToSlide('contact')" data-tab="contact" class="nav-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-black transition">Contact</button>
-      </nav>
+        <!-- Floating Glass Nav Pill -->
+        <nav class="hidden md:flex items-center space-x-1 bg-black/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
+          <a href="#branding" class="px-4 py-1.5 rounded-full hover:bg-white/20 text-white/90 hover:text-white transition">Work</a>
+          <a href="#about" class="px-4 py-1.5 rounded-full hover:bg-white/20 text-white/90 hover:text-white transition">About</a>
+          <a href="#contact" class="px-4 py-1.5 rounded-full hover:bg-white/20 text-white/90 hover:text-white transition">Contact</a>
+        </nav>
 
-      <!-- Action Button -->
-      <button onclick="goToSlide('contact')" class="bg-[#121212] hover:bg-[#D32F2F] text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition shadow-md">
-        Let's Talk
-      </button>
-    </div>
-  </header>
+        <a href="#contact" class="bg-white text-[#C91A1A] hover:bg-black hover:text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition shadow-lg">
+          Let's Talk
+        </a>
+      </div>
+    </header>
 
-  <!-- Slide Deck Main Container -->
-  <main class="flex-1 pt-24 max-w-7xl mx-auto w-full px-6">
-
-    <!-- ================= SLIDE 1: HERO (Cursor Tracking) ================= -->
-    <section id="slide-hero" class="slide-section active min-h-[80vh] flex items-center">
-      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-8">
+    <!-- Main Hero Body -->
+    <div class="max-w-7xl mx-auto w-full px-6 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end relative z-20 pb-12 lg:pb-0">
+      
+      <!-- Left Column: Typography -->
+      <div class="lg:col-span-6 space-y-5 lg:pb-28">
+        <p class="text-xs sm:text-sm font-extrabold tracking-widest uppercase text-white/80">
+          HI, I'M
+        </p>
         
-        <!-- Left Text Column -->
-        <div class="lg:col-span-7 space-y-6 stagger-1">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D32F2F]/10 border border-[#D32F2F]/20 text-[#D32F2F] text-xs font-bold uppercase tracking-widest">
-            <span class="w-2 h-2 rounded-full bg-[#FF6B35] animate-ping"></span>
-            Founder of Draft to Frame
-          </div>
+        <h1 class="text-7xl sm:text-8xl lg:text-9xl font-script text-white leading-none drop-shadow-md select-none">
+          Varnika
+        </h1>
 
-          <div class="space-y-1">
-            <p class="text-xl md:text-2xl font-bold text-gray-700">HI, I'M</p>
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-script text-[#D32F2F] drop-shadow-sm leading-none">
-              Varnika Seth
-            </h1>
-          </div>
+        <p class="text-white/90 text-sm sm:text-base max-w-md leading-relaxed font-normal">
+          Crafting modern brand ecosystems, luxury packaging dielines, creative motion, and digital illustrations.
+        </p>
 
-          <h2 class="text-2xl sm:text-4xl font-serif-title font-black text-[#121212] leading-tight">
-            Graphic Designer & Visual Artist.<br />
-            <span class="text-[#FF6B35] italic font-normal">"Every frame holds an idea."</span>
-          </h2>
+        <!-- CTA Buttons -->
+        <div class="flex items-center gap-4 pt-2">
+          <a href="#branding" class="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition">
+            Selected Work
+          </a>
+          <a href="#contact" class="bg-white text-[#C91A1A] hover:bg-black hover:text-white px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-lg">
+            Let's Talk
+          </a>
+        </div>
+      </div>
 
-          <p class="max-w-xl text-gray-600 text-sm sm:text-base leading-relaxed">
-            Crafting tactile brand identity systems, custom packaging dielines, dynamic advertising layouts, and 2D character motion designs.
-          </p>
-
-          <div class="flex flex-wrap gap-4 pt-4">
-            <button onclick="goToSlide('branding')" class="bg-[#D32F2F] hover
+      <!-- Right Column: Massive Seamless Mascot -->
+      <div class="lg:col-span-6 flex justify-center lg:justify-end items-end h-[60vh] sm:h-[70vh] lg:h-[88vh] pointer-events-none select-none">
+        <div id="mascot-wrapper" class="relative w-full max-w-[560px] h-full flex items-end justify-center transition-transform duration-100 ease-out">
+          <img 
+            id="mascot-img"
+            src="mascot.png" 
+            onerror="this.src='macot.png.png'; this.onerror=function(){this.src='mascot.png.png'}"
+            alt="Varnika Seth Mascot"
+            class="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_25

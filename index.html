@@ -1,18 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Varnika Seth | Founder of Draft to Frame</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* Natural Browser Scroll Enabled */
     html {
       scroll-behavior: smooth;
     }
@@ -23,6 +21,7 @@
       color: #121212;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
+      overflow-y: auto !important;
     }
     .font-serif-title {
       font-family: 'Playfair Display', serif;
@@ -51,50 +50,88 @@
     .anim-tool-2 { animation: float2 5s ease-in-out infinite; }
     .anim-sparkle { animation: sparkle 2.5s ease-in-out infinite; }
 
-    /* 3D Perspective Stage */
-    .mascot-stage {
-      perspective: 1200px;
+    /* Mascot Rig Container */
+    .mascot-container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      height: 75vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      perspective: 1000px;
+      pointer-events: none;
     }
-    #mascot-tilt {
+
+    /* Head Rig (Tilts with cursor) */
+    #mascot-head-rig {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
       transform-style: preserve-3d;
-      transition: transform 0.12s ease-out;
+      transition: transform 0.08s ease-out;
       will-change: transform;
+    }
+
+    /* Pupil Layer (Under the cutout eye sockets) */
+    #pupil-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom;
+      z-index: 10;
+      transition: transform 0.05s ease-out;
+      will-change: transform;
+    }
+
+    /* Head Cutout Layer (Overlay on top of pupils) */
+    #head-layer {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom;
+      z-index: 20;
+      drop-shadow: 0 25px 35px rgba(0,0,0,0.5);
     }
   </style>
 </head>
 <body class="selection:bg-[#FF6B35] selection:text-white">
 
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="w-full fixed top-0 left-0 pt-4 px-6 z-50 bg-[#C91A1A]/90 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#hero" class="text-white text-sm font-bold tracking-widest uppercase">
+        Draft To Frame<span class="text-[#FF6B35]">.</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center space-x-1 bg-black/25 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
+        <a href="#about" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">About</a>
+        <a href="#aura" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Aura Jewels</a>
+        <a href="#bakery" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Golden Crumb</a>
+        <a href="#advertising" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Advertising</a>
+        <a href="#posters" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Posters</a>
+        <a href="#art" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Vector Art</a>
+        <a href="#contact" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Contact</a>
+      </nav>
+
+      <a href="#contact" class="bg-white text-[#C91A1A] hover:bg-black hover:text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition shadow-lg">
+        Let's Talk
+      </a>
+    </div>
+  </header>
+
   <!-- ================= SECTION 1: RED HERO ================= -->
-  <section id="hero" class="relative min-h-screen hero-bg text-white flex flex-col justify-between overflow-hidden">
-    
-    <!-- Top Pill Navbar -->
-    <header class="w-full pt-6 px-6 z-40">
-      <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#hero" class="text-white text-sm font-bold tracking-widest uppercase">
-          Draft To Frame<span class="text-[#FF6B35]">.</span>
-        </a>
-
-        <!-- Continuous Scroll Links -->
-        <nav class="hidden lg:flex items-center space-x-1 bg-black/25 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
-          <a href="#about" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">About</a>
-          <a href="#aura" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Aura Jewels</a>
-          <a href="#bakery" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Golden Crumb</a>
-          <a href="#advertising" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Advertising</a>
-          <a href="#posters" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Posters</a>
-          <a href="#art" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Vector Art</a>
-          <a href="#contact" class="px-3 py-1.5 rounded-full hover:bg-white/20 text-white transition">Contact</a>
-        </nav>
-
-        <a href="#contact" class="bg-white text-[#C91A1A] hover:bg-black hover:text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition shadow-lg">
-          Let's Talk
-        </a>
-      </div>
-    </header>
-
-    <!-- Main Hero Body -->
+  <section id="hero" class="relative min-h-screen hero-bg text-white flex flex-col justify-between overflow-hidden pt-20">
     <div class="max-w-7xl mx-auto w-full px-6 flex-1 flex flex-col lg:flex-row items-center lg:items-end justify-between relative z-20 py-8 lg:py-0">
       
-      <!-- Left Column: Typography -->
+      <!-- Typography -->
       <div class="w-full lg:w-1/2 space-y-6 lg:pb-24">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/20 border border-white/20 text-white text-xs font-bold uppercase tracking-widest">
           <span class="w-2 h-2 rounded-full bg-[#FF6B35] animate-ping"></span>
@@ -127,17 +164,17 @@
         </div>
       </div>
 
-      <!-- Right Column: Massive Clean Mascot with Parallax Physics -->
-      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[500px] sm:h-[600px] lg:h-[740px] relative mascot-stage">
+      <!-- Mascot Rig with Independent Pupil Movement -->
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end h-[500px] sm:h-[600px] lg:h-[750px] relative">
         
-        <!-- Interactive Design Tools (Floating Parallax) -->
-        <div id="tool-pen" class="anim-tool-1 absolute top-12 left-6 z-30 transition-transform duration-100 ease-out pointer-events-none">
+        <!-- Floating Tools -->
+        <div id="tool-pen" class="anim-tool-1 absolute top-12 left-6 z-30 pointer-events-none transition-transform duration-75 ease-out">
           <div class="bg-white/20 backdrop-blur-md border border-white/40 p-3 rounded-2xl shadow-xl flex items-center justify-center">
             <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
           </div>
         </div>
 
-        <div id="tool-palette" class="anim-tool-2 absolute top-24 right-6 z-30 transition-transform duration-100 ease-out pointer-events-none">
+        <div id="tool-palette" class="anim-tool-2 absolute top-24 right-6 z-30 pointer-events-none transition-transform duration-75 ease-out">
           <div class="bg-white/20 backdrop-blur-md border border-white/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-1.5">
             <span class="w-3.5 h-3.5 rounded-full bg-[#FAF6F0]"></span>
             <span class="w-3.5 h-3.5 rounded-full bg-[#FF6B35]"></span>
@@ -145,28 +182,35 @@
           </div>
         </div>
 
-        <div id="tool-star" class="anim-sparkle absolute top-1/2 -left-3 z-30 transition-transform duration-100 ease-out pointer-events-none">
+        <div id="tool-star" class="anim-sparkle absolute top-1/2 -left-3 z-30 pointer-events-none transition-transform duration-75 ease-out">
           <div class="bg-white/15 backdrop-blur-md border border-white/30 p-2 rounded-full shadow-lg">
             <svg class="w-5 h-5 text-yellow-300 fill-current" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
           </div>
         </div>
 
-        <!-- Clean Mascot Tilt Container -->
-        <div id="mascot-tilt" class="relative w-full max-w-[540px] h-full flex items-end justify-center select-none">
-          <img 
-            id="mascot-img"
-            src="macot.png.png" 
-            onerror="this.onerror=null; this.src='mascot.png';"
-            alt="Varnika Seth Mascot"
-            class="h-full w-auto max-h-[80vh] object-contain object-bottom drop-shadow-[0_25px_40px_rgba(0,0,0,0.55)] select-none pointer-events-none"
-          />
+        <!-- 2-Layer Mascot Hierarchy -->
+        <div class="mascot-container">
+          <div id="mascot-head-rig">
+            <!-- 1. Eye Pupils (Behind) -->
+            <img 
+              id="pupil-layer" 
+              src="pupil.png.png" 
+              alt="Mascot Pupils"
+            />
+            <!-- 2. Face & Hair (Front Cutout) -->
+            <img 
+              id="head-layer" 
+              src="mascot head.png.png" 
+              onerror="this.onerror=null; this.src='mascot.png';"
+              alt="Varnika Seth Mascot"
+            />
+          </div>
         </div>
 
       </div>
-
     </div>
 
-    <!-- Organic Horizon Edge -->
+    <!-- Organic Jagged Horizon Edge -->
     <div class="w-full overflow-hidden leading-none z-30">
       <svg viewBox="0 0 1200 50" preserveAspectRatio="none" class="w-full h-12 fill-[#FAF6F0]">
         <path d="M0,25 Q40,32 75,20 T150,28 T230,18 T310,30 T390,16 T470,29 T550,19 T630,31 T710,18 T790,28 T870,17 T950,30 T1030,21 T1110,29 T1200,22 L1200,50 L0,50 Z"></path>
@@ -188,7 +232,6 @@
           <div class="relative w-72 sm:w-80 h-96 sm:h-[440px] rounded-3xl overflow-hidden border-4 border-[#121212] bg-white shadow-2xl rotate-[-2deg] hover:rotate-0 transition duration-300">
             <img 
               src="org.png.png" 
-              onerror="this.onerror=null; this.src='org.png';"
               alt="Varnika Seth" 
               class="w-full h-full object-cover cursor-zoom-in"
               onclick="openLightbox(this.src, 'Varnika Seth', 'Founder & Creative Director at Draft to Frame')"
@@ -199,7 +242,7 @@
           </div>
         </div>
 
-        <!-- Copy & Software Column -->
+        <!-- Copy & Software Skills -->
         <div class="lg:col-span-7 space-y-6">
           <div class="bg-white p-8 rounded-3xl border-2 border-black/10 shadow-sm space-y-4">
             <h3 class="text-2xl font-bold font-serif-title text-[#121212]">
@@ -225,7 +268,6 @@
             </div>
           </div>
 
-          <!-- Disciplines -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-bold text-[#121212]">
             <div class="p-3 bg-white rounded-xl border border-black/10">Brand Identity</div>
             <div class="p-3 bg-white rounded-xl border border-black/10">Luxury Packaging</div>
@@ -249,30 +291,30 @@
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-mockup.jpg', 'Aura Fine Jewels', 'Complete luxury brand packshot mockup')">
+        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-mockup.jpg.png', 'Aura Fine Jewels', 'Complete luxury brand packshot mockup')">
           <div class="rounded-xl overflow-hidden h-44 bg-black/40">
-            <img src="aura-mockup.jpg" onerror="this.onerror=null; this.src='aura-mockup.jpg.png';" alt="Aura Mockup" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <img src="aura-mockup.jpg.png" alt="Aura Mockup" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-300">Luxury Packshot Mockup</div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-diecut.jpg', 'Aura Carry Bag Dieline', 'Custom structural packaging fold layout')">
+        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-diecut.jpg.png', 'Aura Carry Bag Dieline', 'Custom structural packaging fold layout')">
           <div class="rounded-xl overflow-hidden h-44 bg-black/40">
-            <img src="aura-diecut.jpg" onerror="this.onerror=null; this.src='aura-diecut.jpg.png';" alt="Aura Die Cut" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <img src="aura-diecut.jpg.png" alt="Aura Die Cut" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-300">Carry Bag Dieline</div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-billboard.jpg', 'Metropolitan Billboard', 'High-impact outdoor city billboard display')">
+        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-billboard.jpg.png', 'Metropolitan Billboard', 'High-impact outdoor city billboard display')">
           <div class="rounded-xl overflow-hidden h-44 bg-black/40">
-            <img src="aura-billboard.jpg" onerror="this.onerror=null; this.src='aura-billboard.jpg.png';" alt="Aura Billboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <img src="aura-billboard.jpg.png" alt="Aura Billboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-300">City Billboard Display</div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-poster.jpg', 'Aura Retail Campaign Poster', 'High-end retail store promotional poster')">
+        <div class="bg-[#1e1e1e] rounded-2xl p-3 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('aura-poster.jpg.png', 'Aura Retail Campaign Poster', 'High-end retail store promotional poster')">
           <div class="rounded-xl overflow-hidden h-44 bg-black/40">
-            <img src="aura-poster.jpg" onerror="this.onerror=null; this.src='aura-poster.jpg.png';" alt="Aura Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            <img src="aura-poster.jpg.png" alt="Aura Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-300">Retail Campaign Poster</div>
         </div>
@@ -299,44 +341,50 @@
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-logo.jpg', 'Logo Grid Variations', 'Six-variation brand exploration grid')">
+        <!-- 1. Variations -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-logo.jpg.png', 'Logo Grid Variations', 'Six-variation brand exploration grid')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-logo.jpg" onerror="this.onerror=null; this.src='bakery-logo.jpg.png';" alt="Bakery Variations" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-logo.jpg.png" alt="Bakery Variations" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Logo Variations</div>
         </div>
 
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-branding.jpg', 'Storefront Identity Board', 'Palette, storefront concept & collateral')">
+        <!-- 2. Branding Board -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-branding.jpg.png', 'Storefront Identity Board', 'Palette, storefront concept & collateral')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-branding.jpg" onerror="this.onerror=null; this.src='bakery-branding.jpg.png';" alt="Bakery Branding" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-branding.jpg.png" alt="Bakery Branding" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Identity Board</div>
         </div>
 
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-box.jpg', 'Pastry Box Dieline', 'Foldable die-cut pastry box packaging')">
+        <!-- 3. Box Dieline -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-box.jpg.png', 'Pastry Box Dieline', 'Foldable die-cut pastry box packaging')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-box.jpg" onerror="this.onerror=null; this.src='bakery-box.jpg.png';" alt="Bakery Box" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-box.jpg.png" alt="Bakery Box" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Pastry Box Dieline</div>
         </div>
 
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-monogram.jpg', 'Chef-Hat Monogram', 'Signature artisan emblem & botanical wheat pattern')">
+        <!-- 4. Monogram -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-monogram.jpg.png', 'Chef-Hat Monogram', 'Signature artisan emblem & botanical wheat pattern')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-monogram.jpg" onerror="this.onerror=null; this.src='logo for bakery-04.jpg';" alt="Bakery Monogram" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-monogram.jpg.png" alt="Bakery Monogram" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Chef-Hat Monogram</div>
         </div>
 
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-card.jpg', 'Stationery & QR Card', 'Promotional counter business card with social QR')">
+        <!-- 5. Card -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-card.jpg.png', 'Stationery & QR Card', 'Promotional counter business card with social QR')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-card.jpg" onerror="this.onerror=null; this.src='bakery-card.jpg.png';" alt="Bakery Card" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-card.jpg.png" alt="Bakery Card" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Stationery & QR</div>
         </div>
 
-        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-shake-ad.jpg', 'Sip Into Something Sweet', 'Dessert shake craving & voucher promotional visual')">
+        <!-- 6. Shake Promo -->
+        <div class="bg-white rounded-2xl p-3 border border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('bakery-shake-ad.jpg.png', 'Sip Into Something Sweet', 'Dessert shake craving & voucher promotional visual')">
           <div class="rounded-xl overflow-hidden h-40 bg-gray-100">
-            <img src="bakery-shake-ad.jpg" onerror="this.onerror=null; this.src='logo for bakery-06.jpg';" alt="Bakery Shake Promo" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="bakery-shake-ad.jpg.png" alt="Bakery Shake Promo" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="pt-2 text-[11px] font-bold text-gray-800">Shake Promo Ad</div>
         </div>
@@ -353,9 +401,9 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-sprite.jpg', 'Sprite Refreshment Splash', 'Dynamic beverage splash product manipulation')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-sprite.jpg.png', 'Sprite Refreshment Splash', 'Dynamic beverage splash product manipulation')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
-            <img src="ad-sprite.jpg" onerror="this.onerror=null; this.src='ad-sprite.jpg.png';" alt="Sprite Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="ad-sprite.jpg.png" alt="Sprite Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Sprite Refreshment Ad</h4>
@@ -363,9 +411,9 @@
           </div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-milk.jpg', 'Dairy Milk Splash Commercial', 'Sculpted liquid milk motion layout')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-milk.jpg.png', 'Dairy Milk Splash Commercial', 'Sculpted liquid milk motion layout')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
-            <img src="ad-milk.jpg" onerror="this.onerror=null; this.src='ad-milk.jpg.png';" alt="Milk Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="ad-milk.jpg.png" alt="Milk Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Dairy Milk Splash Ad</h4>
@@ -373,9 +421,9 @@
           </div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-headphone.jpg', 'Modern Audio Campaign', 'Clean geometric social media banner')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-headphone.jpg.png', 'Modern Audio Campaign', 'Clean geometric social media banner')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
-            <img src="ad-headphone.jpg" onerror="this.onerror=null; this.src='ad-headphone.jpg.png';" alt="Headphone Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="ad-headphone.jpg.png" alt="Headphone Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Headphone Campaign</h4>
@@ -383,9 +431,9 @@
           </div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-perfume.jpg', 'Jascrcent Perfume', 'Isometric 3D architectural geometry pamphlet')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('ad-perfume.jpg.png', 'Jascrcent Perfume', 'Isometric 3D architectural geometry pamphlet')">
           <div class="rounded-2xl overflow-hidden h-72 bg-black/40">
-            <img src="ad-perfume.jpg" onerror="this.onerror=null; this.src='perfume pamphlet.png';" alt="Perfume Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="ad-perfume.jpg.png" alt="Perfume Ad" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Jascrcent Perfume</h4>
@@ -405,9 +453,9 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-money-heist.jpg', 'Money Heist Concept Poster', 'Fragmented photo-strips of the Professor with iconic Dali masks and flying currency')">
+        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-money-heist.jpg.png', 'Money Heist Concept Poster', 'Fragmented photo-strips of the Professor with iconic Dali masks and flying currency')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
-            <img src="poster-money-heist.jpg" onerror="this.onerror=null; this.src='money hiest.jpg';" alt="Money Heist" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="poster-money-heist.jpg.png" alt="Money Heist" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-[#121212]">Money Heist Poster</h4>
@@ -415,9 +463,9 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-director.jpg', 'Wanna Be Director Recruitment Poster', 'Vintage unwinding celluloid film-strip with retro halftone cinema vibes')">
+        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-director.jpg.png', 'Wanna Be Director Recruitment Poster', 'Vintage unwinding celluloid film-strip with retro halftone cinema vibes')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
-            <img src="poster-director.jpg" onerror="this.onerror=null; this.src='wanna be director.jpg';" alt="Director Poster" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="poster-director.jpg.png" alt="Director Poster" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-[#121212]">Wanna Be Director</h4>
@@ -425,9 +473,9 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-cyberpunk.jpg', 'Unlock Your Creative Future', 'Cybernetic neural circuits and glowing neon binary code photo manipulation')">
+        <div class="bg-white rounded-3xl p-4 border-2 border-black/10 shadow-sm cursor-pointer group" onclick="openLightbox('poster-cyberpunk.jpg.png', 'Unlock Your Creative Future', 'Cybernetic neural circuits and glowing neon binary code photo manipulation')">
           <div class="rounded-2xl overflow-hidden h-80 bg-gray-100">
-            <img src="poster-cyberpunk.jpg" onerror="this.onerror=null; this.src='UNLOCK YOUR CREATIVE FUTURE.jpg';" alt="Cyberpunk Future" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="poster-cyberpunk.jpg.png" alt="Cyberpunk Future" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-[#121212]">Unlock Creative Future</h4>
@@ -447,9 +495,9 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('vector-kaali.jpg', 'Maa Kaali Vector Artwork', 'Expressive traditional-inspired spiritual digital painting')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('art-kaali.jpg.png', 'Maa Kaali Vector Artwork', 'Expressive traditional-inspired spiritual digital painting')">
           <div class="rounded-2xl overflow-hidden h-80 bg-black/40">
-            <img src="vector-kaali.jpg" onerror="this.onerror=null; this.src='art-kaali.jpg'; this.onerror=function(){this.src='art-kaali.jpg.png'};" alt="Maa Kaali" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="art-kaali.jpg.png" alt="Maa Kaali" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Maa Kaali Vector Artwork</h4>
@@ -457,9 +505,9 @@
           </div>
         </div>
 
-        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('vector-portrait.jpg', 'Stylized Vector Art', 'Clean line work and bold flat color palette')">
+        <div class="bg-[#1e1e1e] rounded-3xl p-4 border border-white/10 shadow-sm cursor-pointer group" onclick="openLightbox('art-vector.jpg.png', 'Stylized Vector Art', 'Clean line work and bold flat color palette')">
           <div class="rounded-2xl overflow-hidden h-80 bg-black/40">
-            <img src="vector-portrait.jpg" onerror="this.onerror=null; this.src='art-vector.jpg'; this.onerror=function(){this.src='art-vector.jpg.png'};" alt="Vector Art" class="w-full h-full object-cover group-hover:scale-105 transition" />
+            <img src="art-vector.jpg.png" alt="Vector Art" class="w-full h-full object-cover group-hover:scale-105 transition" />
           </div>
           <div class="p-3">
             <h4 class="font-bold text-sm text-white">Stylized Vector Portrait</h4>
@@ -520,32 +568,37 @@
     </div>
   </div>
 
-  <!-- Smooth 3D Cursor Parallax (Natural Tilt, No Glitches) -->
+  <!-- Real-Time Parallax & Pupil Rig Script -->
   <script>
-    const mascotTilt = document.getElementById('mascot-tilt');
+    const mascotHeadRig = document.getElementById('mascot-head-rig');
+    const pupilLayer = document.getElementById('pupil-layer');
     const toolPen = document.getElementById('tool-pen');
     const toolPalette = document.getElementById('tool-palette');
     const toolStar = document.getElementById('tool-star');
 
-    window.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const mouseX = (clientX / innerWidth) - 0.5;
-      const mouseY = (clientY / innerHeight) - 0.5;
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = (e.clientX / window.innerWidth) - 0.5;
+      const mouseY = (e.clientY / window.innerHeight) - 0.5;
 
-      // Clean 3D Posture Tilt (Exactly like Video 1)
-      if (mascotTilt) {
-        mascotTilt.style.transform = `rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 8}deg) translateZ(10px)`;
+      // 1. Head 3D Tilt
+      if (mascotHeadRig) {
+        mascotHeadRig.style.transform = `rotateY(${mouseX * 16}deg) rotateX(${-mouseY * 8}deg)`;
       }
 
-      // Parallax for Floating Design Tools
+      // 2. True Independent Pupil 360-degree Motion
+      if (pupilLayer) {
+        pupilLayer.style.transform = `translate(${mouseX * 24}px, ${mouseY * 18}px)`;
+      }
+
+      // 3. Floating Tools Parallax
       if (toolPen) toolPen.style.transform = `translate(${-mouseX * 25}px, ${-mouseY * 20}px)`;
       if (toolPalette) toolPalette.style.transform = `translate(${-mouseX * 30}px, ${mouseY * 22}px)`;
       if (toolStar) toolStar.style.transform = `translate(${mouseX * 20}px, ${-mouseY * 25}px)`;
     });
 
-    window.addEventListener('mouseleave', () => {
-      if (mascotTilt) mascotTilt.style.transform = `rotateY(0deg) rotateX(0deg) translateZ(0px)`;
+    document.addEventListener('mouseleave', () => {
+      if (mascotHeadRig) mascotHeadRig.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      if (pupilLayer) pupilLayer.style.transform = `translate(0px, 0px)`;
       if (toolPen) toolPen.style.transform = `translate(0px, 0px)`;
       if (toolPalette) toolPalette.style.transform = `translate(0px, 0px)`;
       if (toolStar) toolStar.style.transform = `translate(0px, 0px)`;
